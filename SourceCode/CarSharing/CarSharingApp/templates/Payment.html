@@ -1,0 +1,108 @@
+{% load static %}
+<html>
+<head>
+<title>Blockchain Based Car Rental System</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}"/>
+ <script LANGUAGE="Javascript" >
+ function checkEmail(t3) {
+	if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(t3)){
+		return (true)
+	}
+	alert("Invalid E-mail Address! Please re-enter.")
+	return (false);
+}
+function validate(){
+	var x=document.forms["f1"]["t2"].value;
+	var y=document.forms["f1"]["t3"].value;
+	
+	
+	if(x == null || x==""){
+		window.alert("Card no must be enter");
+		document.f1.t1.focus();
+		return false;
+	}
+	if(y == null || y==""){
+		window.alert("CVV No must be enter");
+		document.f1.t2.focus();
+		return false;
+	}
+	if(isNaN(y)){
+		alert("CVV No  must be numeric");
+		document.f1.t3.focus();
+		return false;
+	}
+	
+	return true;
+}
+		
+	
+	</script>
+</head>
+<body>
+<div id="wrapper">
+	<div id="header">
+		<div id="logo">
+			<center><font size="4" color="black">COMMUTERS</font></center>
+		</div>
+		<div id="slogan">
+			
+		</div>
+	</div>
+	<div id="menu">
+		<ul><center>
+	  <li><a href="{% url 'BookCars' %}">View & Book Car</a></li>
+	  <li><a href="{% url 'ReleasedBookCars' %}">Released Booked Car</a></li>
+	  <li><a href="{% url 'ViewHistory' %}">View History</a></li>
+	  <li><a href="{% url 'index' %}">Logout</a></li>		
+		</center></ul>
+<br class="clearfix" />
+				</div>
+			
+	<div id="splash">
+		<img class="pic" src="{% static 'images/image4.jpg' %}" width="870" height="230" alt="" />
+	</div>	
+			<center>
+<form name="f1" method="post" action={% url 'PaymentAction' %} OnSubmit="return validate()">
+	{% csrf_token %}<br/>
+   <h3><b>Payment Screen</b></h3>
+   
+	<font size="" color="black"><center>{{ data }}</center></font>
+						
+						<table align="center" width="80" >
+			 <tr><td><font size="" color="black">Required&nbsp;Rented&nbsp;Days</b></td><td><select name="t1">
+			 <option values="1">1</option>
+			 <option values="2">2</option>
+			 <option values="3">3</option>
+			 <option values="4">4</option>
+			 <option values="5">5</option>
+			 <option values="6">6</option>
+			 <option values="7">7</option>
+			 <option values="8">8</option>
+			 <option values="9">9</option>
+			 <option values="10">10</option>
+			 <option values="11">11</option>
+			 <option values="12">12</option>
+			 <option values="13">13</option>
+			 <option values="14">14</option>
+			 <option values="15">15</option>
+			 </select>
+			 </td></tr>
+         
+		  
+		<tr><td><font size="" color="black">Card&nbsp;No</b></td><td><input type="text" name="t2" style="font-family: Comic Sans MS" size="25"/></td></tr>
+
+<tr><td><font size="" color="black">CVV&nbsp;No</b></td><td><input type="text" name="t3" style="font-family: Comic Sans MS" size="10"/></td></tr>
+
+
+		 
+			<tr><td></td><td><input type="submit" value="Submit">
+			</td>
+			</table>
+			<br/><br/><br/><br/>
+				</div>	
+					
+				</div>
+				
+	</body>
+</html>
